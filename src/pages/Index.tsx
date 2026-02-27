@@ -10,11 +10,11 @@ import {
 } from "lucide-react";
 
 const services = [
-  { icon: Wallet, label: { en: "Pay Bill", hi: "बिल भुगतान", mr: "बिल भरा" } },
-  { icon: ClipboardList, label: { en: "Register Complaint", hi: "शिकायत दर्ज करें", mr: "तक्रार नोंदवा" } },
-  { icon: Search, label: { en: "Track Status", hi: "स्थिति ट्रैक करें", mr: "स्थिती ट्रॅक करा" } },
-  { icon: FileText, label: { en: "Apply for Service", hi: "सेवा के लिए आवेदन", mr: "सेवेसाठी अर्ज करा" } },
-  { icon: HelpCircle, label: { en: "Help", hi: "सहायता", mr: "मदत" } },
+  { icon: Wallet, label: { en: "Pay Bill", hi: "बिल भुगतान", mr: "बिल भरा" }, path: "/pay-bill" },
+  { icon: ClipboardList, label: { en: "Register Complaint", hi: "शिकायत दर्ज करें", mr: "तक्रार नोंदवा" }, path: "/register-complaint" },
+  { icon: Search, label: { en: "Track Status", hi: "स्थिति ट्रैक करें", mr: "स्थिती ट्रॅक करा" }, path: "/track-status" },
+  { icon: FileText, label: { en: "Apply for Service", hi: "सेवा के लिए आवेदन", mr: "सेवेसाठी अर्ज करा" }, path: "/apply-for-service" },
+  { icon: HelpCircle, label: { en: "Help", hi: "सहायता", mr: "मदत" }, path: "/help" },
 ];
 
 const instructions = {
@@ -26,6 +26,7 @@ const instructions = {
 type Lang = "en" | "hi" | "mr";
 
 const Index = () => {
+  const navigate = useNavigate();
   const [lang, setLang] = useState<Lang>("en");
   const [now, setNow] = useState(new Date());
 
@@ -56,6 +57,7 @@ const Index = () => {
             return (
               <button
                 key={i}
+                onClick={() => navigate(svc.path)}
                 className={`flex min-h-[120px] flex-col items-center justify-center gap-3 rounded-xl bg-primary px-6 py-8 text-primary-foreground shadow-lg transition-transform duration-150 hover:scale-[1.03] active:scale-[0.98] ${
                   isLast ? "col-span-2 mx-auto w-1/2" : ""
                 }`}
