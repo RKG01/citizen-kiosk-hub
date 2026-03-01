@@ -1,5 +1,28 @@
 import type { Config } from "tailwindcss";
 
+const scaledFontSize = (size: string, lineHeight: string) => [
+  `calc(${size} * var(--kiosk-font-scale, 1))`,
+  {
+    lineHeight,
+  },
+] as const;
+
+const fontSize = {
+  xs: scaledFontSize("0.75rem", "1rem"),
+  sm: scaledFontSize("0.875rem", "1.25rem"),
+  base: scaledFontSize("1rem", "1.5rem"),
+  lg: scaledFontSize("1.125rem", "1.75rem"),
+  xl: scaledFontSize("1.25rem", "1.75rem"),
+  "2xl": scaledFontSize("1.5rem", "2rem"),
+  "3xl": scaledFontSize("1.875rem", "2.25rem"),
+  "4xl": scaledFontSize("2.25rem", "2.5rem"),
+  "5xl": scaledFontSize("3rem", "1"),
+  "6xl": scaledFontSize("3.75rem", "1"),
+  "7xl": scaledFontSize("4.5rem", "1"),
+  "8xl": scaledFontSize("6rem", "1"),
+  "9xl": scaledFontSize("8rem", "1"),
+};
+
 export default {
   darkMode: ["class"],
   content: ["./pages/**/*.{ts,tsx}", "./components/**/*.{ts,tsx}", "./app/**/*.{ts,tsx}", "./src/**/*.{ts,tsx}"],
@@ -12,6 +35,7 @@ export default {
         "2xl": "1400px",
       },
     },
+    fontSize,
     extend: {
       colors: {
         border: "hsl(var(--border))",

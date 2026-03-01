@@ -10,27 +10,33 @@ import TrackStatus from "./pages/TrackStatus";
 import ApplyForService from "./pages/ApplyForService";
 import Help from "./pages/Help";
 import NotFound from "./pages/NotFound";
+import { LanguageProvider } from "./context/LanguageContext";
+import { TextScaleProvider } from "./context/TextScaleContext";
 
 const queryClient = new QueryClient();
 
 const App = () => (
-  <QueryClientProvider client={queryClient}>
-    <TooltipProvider>
-      <Toaster />
-      <Sonner />
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Index />} />
-          <Route path="/pay-bill" element={<PayBill />} />
-          <Route path="/register-complaint" element={<RegisterComplaint />} />
-          <Route path="/track-status" element={<TrackStatus />} />
-          <Route path="/apply-for-service" element={<ApplyForService />} />
-          <Route path="/help" element={<Help />} />
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-      </BrowserRouter>
-    </TooltipProvider>
-  </QueryClientProvider>
+  <LanguageProvider>
+    <TextScaleProvider>
+      <QueryClientProvider client={queryClient}>
+        <TooltipProvider>
+          <Toaster />
+          <Sonner />
+          <BrowserRouter>
+            <Routes>
+              <Route path="/" element={<Index />} />
+              <Route path="/pay-bill" element={<PayBill />} />
+              <Route path="/register-complaint" element={<RegisterComplaint />} />
+              <Route path="/track-status" element={<TrackStatus />} />
+              <Route path="/apply-for-service" element={<ApplyForService />} />
+              <Route path="/help" element={<Help />} />
+              <Route path="*" element={<NotFound />} />
+            </Routes>
+          </BrowserRouter>
+        </TooltipProvider>
+      </QueryClientProvider>
+    </TextScaleProvider>
+  </LanguageProvider>
 );
 
 export default App;

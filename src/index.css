@@ -53,6 +53,9 @@ All colors MUST be HSL.
     --sidebar-border: 220 13% 91%;
 
     --sidebar-ring: 217.2 91.2% 59.8%;
+    --kiosk-font-scale: 1;
+    --text-controls-top: 6.0rem;
+    --text-controls-right: 10rem;
   }
 
   .dark {
@@ -91,6 +94,8 @@ All colors MUST be HSL.
     --sidebar-accent-foreground: 240 4.8% 95.9%;
     --sidebar-border: 240 3.7% 15.9%;
     --sidebar-ring: 217.2 91.2% 59.8%;
+    --text-controls-top: 2.5rem;
+    --text-controls-right: 5rem;
   }
 }
 
@@ -99,7 +104,21 @@ All colors MUST be HSL.
     @apply border-border;
   }
 
+  html {
+    font-size: 16px;
+  }
+
   body {
     @apply bg-background text-foreground;
+  }
+}
+
+@layer components {
+  .kiosk-text-controls {
+    position: fixed;
+    top: var(--text-controls-top);
+    right: var(--text-controls-right);
+    z-index: 40;
+    @apply flex gap-2;
   }
 }
